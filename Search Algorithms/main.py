@@ -1,12 +1,14 @@
 import timeit
 from helper import Helper
-from search import LinearSearch, BinarySearch
+from search import LinearSearch, BinarySearch, ExponentialSearch
 
 def main():
 
+    show_recursion = False
+
     start_num = 1
-    length = 10000
-    search_value = 99999
+    length = 100
+    search_value = 65
 
     helper = Helper()
     nums = helper.generate_ordered_list(start_num, length)
@@ -22,18 +24,18 @@ def main():
     result = LinearSearch().search(nums, search_value)
     end = timeit.timeit()
     print("Contains value: ({0})? ({1})".format(search_value, result))
-    print("Execution time: {0}ms".format(start-end))
+    print("Execution time: {0}ms".format(end-start))
 
-    # BINART SEARCH O(logn)
+    # BINARY SEARCH O(logn)
     print("\n")
     print("-----BINARY SEARCH O(logn)-----")
     start = timeit.timeit()
     result = BinarySearch().search(nums, search_value)
     end = timeit.timeit()
     print("Contains value: ({0})? ({1})".format(search_value, result))
-    print("Execution time: {0}ms".format(start-end))
+    print("Execution time: {0}ms".format(end-start))
 
-    if length < 100000:
+    if show_recursion:
         # BINART SEARCH RECURSIVE O(logn)
         print("\n")
         print("-----BINARY SEARCH RECURSIVE O(logn)-----")
@@ -41,7 +43,16 @@ def main():
         result = BinarySearch().search_recursive(nums, search_value)
         end = timeit.timeit()
         print("Contains value: ({0})? ({1})".format(search_value, result))
-        print("Execution time: {0}ms".format(start-end))
+        print("Execution time: {0}ms".format(end-start))
+
+    # EXPONENTIAL SEARCH O(logn)
+    print("\n")
+    print("-----EXPONENTIAL SEARCH O(logn)-----")
+    start = timeit.timeit()
+    result = ExponentialSearch().search(nums, search_value)
+    end = timeit.timeit()
+    print("Contains value: ({0})? ({1})".format(search_value, result))
+    print("Execution time: {0}ms".format(end-start))
 
 
     print("\n")
