@@ -2,13 +2,13 @@ import time
 import data
 from helper import Helper
 from search import LinearSearch, BinarySearch, ExponentialSearch, InterpolationSearch
-from sort import BubbleSort, SelectionSort
+from sort import BubbleSort, SelectionSort, InsertionSort
 
 def run_sort():
     helper = Helper()
-    low = -100
-    high = 100
-    length = 25
+    low = -15
+    high = 15
+    length = 10
 
     # BUBBLE SORT O(n2)
     print("\n")
@@ -28,6 +28,17 @@ def run_sort():
     if length <= 25: print(nums)
     start = time.time()
     SelectionSort().sort(nums)
+    end = time.time()
+    if length <= 25: print("Sorted numbers:", nums)
+    print("Execution time: {0}ms".format((end-start)*1000))
+
+    # INSERTION SORT O(n2)
+    print("\n")
+    print("-----INSERTION SORT------")
+    nums = helper.generate_random_list(low, high, length)
+    if length <= 25: print(nums)
+    start = time.time()
+    InsertionSort().sort(nums)
     end = time.time()
     if length <= 25: print("Sorted numbers:", nums)
     print("Execution time: {0}ms".format((end-start)*1000))
