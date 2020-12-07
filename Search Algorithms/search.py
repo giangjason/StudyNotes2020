@@ -6,6 +6,7 @@ class LinearSearch():
         """Searches a list one by one in order 
         from left to right for the given value. 
         Time complexity: O(n)
+        Space complexity: O(1)
 
         Args:
             nums (List[int]): The list of numbers to search
@@ -26,6 +27,7 @@ class BinarySearch():
         the value is found or there is only one number left in the list. 
         This method searches iteratively.
         Time complexity: O(logn)
+        Space complexity: O(1)
 
         Args:
             nums (List[int]): The list of numbers to search
@@ -54,6 +56,7 @@ class BinarySearch():
         the value is found or there is only one number left in the list. 
         This method searches recursively.
         Time complexity: O(logn)
+        Space complexity: O(logn)
 
         Args:
             nums (List[int]): The list of numbers to search
