@@ -1,5 +1,6 @@
 from typing import List
 
+# Searches a collection of items one by one, in a sequential fashion.
 class LinearSearch():
 
     def search(self, nums: List[int], val: int) -> bool:
@@ -19,7 +20,9 @@ class LinearSearch():
             if num == val:
                 return True
         return False
-    
+
+# Searches a collection of items by halving the collection of items each iterations. 
+# Each iteration defines a sub-collection that is half the previous collection.  
 class BinarySearch():
 
     def search(self, nums: List[int], val: int) -> bool:
@@ -81,3 +84,35 @@ class BinarySearch():
                 return _search(low, high-1) 
         
         return _search(low, high)
+
+
+# A search that first finds a range of the collection to search in by doubling the range 
+# each iteration until the high bound of the iteration is either at or above search target.
+# The defined range then undergoes a binary search.
+class ExponentialSearch():
+
+    def search(self, nums: List[int], val: int) -> bool:
+        """Searches a collection by first defining a range by doubling an upperbound each iteration. 
+        The range then undergoes binary search. 
+        Time complexity: O(logn) 
+        Space complexity: O(1)  
+
+        Args:
+            nums (List[int]): The numbers to search.
+            val (int): The target to search for.
+
+        Returns:
+            int: The position of the found value. -1 if not found.
+        """
+        if nums[0] == val:
+            return True
+
+        i = 1
+        while i < len(nums) and nums[i] <= val:
+            i *= 2
+        
+        lower = i//2
+        upper = i if i < len(nums)-1 else len(nums)-1
+
+        return BinarySearch().search(nums[lower : upper+1], val)
+        
