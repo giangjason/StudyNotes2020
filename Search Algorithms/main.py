@@ -1,9 +1,7 @@
 import timeit
 from helper import Helper
-# from search import (LinearSearch, BinarySearch, 
-#                         ExponentialSearch, InterpolationSearch)
-from search_rewrite import (LinearSearch, BinarySearch, 
-                            ExponentialSearch, InterpolationSearch)
+from search import (LinearSearch, BinarySearch, 
+                        ExponentialSearch, InterpolationSearch)
 
 def main():
 
