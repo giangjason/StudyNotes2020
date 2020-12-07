@@ -1,15 +1,38 @@
-import timeit
+import time
+import data
 from helper import Helper
-from search import (LinearSearch, BinarySearch, 
-                        ExponentialSearch, InterpolationSearch)
+from search import LinearSearch, BinarySearch, ExponentialSearch, InterpolationSearch
+from sort import BubbleSort
 
-def main():
+def run_sort():
+    helper = Helper()
+    low = -10000
+    high = 10000
+    length = 2500
 
+    use_large_data_set = True
+
+    # BUBBLE SORT O(n2)
+    print("\n")
+    print("-----BUBBLE SORT------")
+    nums = data.random_nums_large if use_large_data_set else data.random_nums_small
+    if not use_large_data_set: print(nums)
+    start = time.time()
+    BubbleSort().sort(nums)
+    end = time.time()
+    if not use_large_data_set: print("Sorted numbers:", nums)
+    print("Execution time: {0}ms".format((end-start)*1000))
+
+
+    print("\n")
+
+
+def run_search():
     show_recursion = True
 
     start_num = 1
-    length = 100
-    search_value = 37
+    length = 100000000
+    search_value = 921200007687687
 
     helper = Helper()
     nums = helper.generate_ordered_list(start_num, length)
@@ -21,49 +44,59 @@ def main():
     # LINEAR SEARCH O(n)
     print("\n")
     print("-----LINEAR SEARCH O(n)-----")
-    start = timeit.timeit()
+    start = time.time()
     result = LinearSearch().search(nums, search_value)
-    end = timeit.timeit()
+    end = time.time()
     print("Contains value: ({0})? ({1})".format(search_value, result))
-    print("Execution time: {0}ms".format(end-start))
+    print("Execution time: {0}ms".format((end-start)*1000))
 
     # BINARY SEARCH O(logn)
     print("\n")
     print("-----BINARY SEARCH O(logn)-----")
-    start = timeit.timeit()
+    start = time.time()
     result = BinarySearch().search(nums, search_value)
-    end = timeit.timeit()
+    end = time.time()
     print("Contains value: ({0})? ({1})".format(search_value, result))
-    print("Execution time: {0}ms".format(end-start))
+    print("Execution time: {0}ms".format((end-start)*1000))
 
     if show_recursion:
         # BINART SEARCH RECURSIVE O(logn)
         print("\n")
         print("-----BINARY SEARCH RECURSIVE O(logn)-----")
-        start = timeit.timeit()
+        start = time.time()
         result = BinarySearch().search_recursive(nums, search_value)
-        end = timeit.timeit()
+        end = time.time()
         print("Contains value: ({0})? ({1})".format(search_value, result))
-        print("Execution time: {0}ms".format(end-start))
+        print("Execution time: {0}ms".format((end-start)*1000))
 
     # EXPONENTIAL SEARCH O(logn)
     print("\n")
     print("-----EXPONENTIAL SEARCH O(logn)-----")
-    start = timeit.timeit()
+    start = time.time()
     result = ExponentialSearch().search(nums, search_value)
-    end = timeit.timeit()
+    end = time.time()
     print("Contains value: ({0})? ({1})".format(search_value, result))
-    print("Execution time: {0}ms".format(end-start))
+    print("Execution time: {0}ms".format((end-start)*1000))
 
     # INTERPOLATION SEARCH O(log(logn))
     print("\n")
     print("-----INTERPOLATION SEARCH O(logn)-----")
-    start = timeit.timeit()
+    start = time.time()
     result = InterpolationSearch().search(nums, search_value)
-    end = timeit.timeit()
+    end = time.time()
     print("Contains value: ({0})? ({1})".format(search_value, result))
-    print("Execution time: {0}ms".format(end-start))
+    print("Execution time: {0}ms".format((end-start)*1000))
 
 
     print("\n")
+
+
+def main():
+
+    show_search = True
+    show_sort = False
+
+    if show_search: run_search()
+    if show_sort: run_sort()
+    
 main()

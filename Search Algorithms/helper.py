@@ -3,6 +3,22 @@ import random
 
 class Helper():
 
+    def generate_random_list(self, low: int, high: int, length: int) -> List[int]:
+        """Generates and returns an unordered list of random numbers.
+
+        Args:
+            low (int): The lowest possible number generated.
+            high (int): The highest possible number generated.
+            length (int): The length of the list.
+
+        Returns:
+            List[int]: Returns an unordered list of random number
+        """
+        nums = []
+        for i in range(length):
+            nums.append(random.randint(low, high))
+        return nums
+
     def generate_ordered_list(self, start: int, length: int) -> List[int]:
         """Generates and returns an ordered list of numbers
 
@@ -14,7 +30,7 @@ class Helper():
             List[int]: An ordered list of numbers
         """
         nums = []
-        for i in range(start, start+length+1):
+        for i in range(start, start+length):
             nums.append(i)
         return nums
 
