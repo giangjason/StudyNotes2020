@@ -1,15 +1,17 @@
 import timeit
 from helper import Helper
-from search import (LinearSearch, BinarySearch, 
-                        ExponentialSearch, InterpolationSearch)
+# from search import (LinearSearch, BinarySearch, 
+#                         ExponentialSearch, InterpolationSearch)
+from search_rewrite import (LinearSearch, BinarySearch, 
+                            ExponentialSearch, InterpolationSearch)
 
 def main():
 
-    show_recursion = False
+    show_recursion = True
 
     start_num = 1
-    length = 100000
-    search_value = 879
+    length = 100
+    search_value = 37
 
     helper = Helper()
     nums = helper.generate_ordered_list(start_num, length)

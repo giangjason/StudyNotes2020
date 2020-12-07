@@ -81,7 +81,7 @@ class BinarySearch():
             elif nums[mid] < val:
                 return _search(mid+1, high)
             else:
-                return _search(low, high-1) 
+                return _search(low, mid-1) 
         
         return _search(low, high)
 
