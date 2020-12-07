@@ -115,4 +115,36 @@ class ExponentialSearch():
         upper = i if i < len(nums)-1 else len(nums)-1
 
         return BinarySearch().search(nums[lower : upper+1], val)
+
+
+class InterpolationSearch():
+
+    def search(self, nums: List[int], val: int) -> bool:
+        """Searches a collection by first determining the closest 
+        position in the collection to the item being searched.
+        Time complexity: O(log(logn))
+
+        Args:
+            nums (List[int]): The numbers to search.
+            val (int): The value to search for.
+
+        Returns:
+            bool: True if found, False if not.
+        """
+
+        low = 0
+        high = len(nums) - 1
+        
+        while low <= high and val >= nums[low] and val <= nums[high]:
+            pos = low + ((val - nums[low]) * (high - low) // (nums[high] - nums[low]))
+
+            if nums[pos] == val:
+                return True
+            elif nums[pos] < val:
+                low = pos + 1
+            else:
+                high = pos - 1
+
+        return False
+
         
