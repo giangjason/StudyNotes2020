@@ -5,8 +5,8 @@ from sort import Bubble, Selection, Insertion, Merge
 def main():
 
     helper = Helper()
-    low = 0
-    high = 200
+    low = -100
+    high = 100
     length = 25
 
     # BUBBLE SORT O(n2)

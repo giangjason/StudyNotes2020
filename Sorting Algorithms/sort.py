@@ -41,10 +41,18 @@ class Selection():
         """
         n = len(nums)
         for i in range(n):
+
+            # Set the lowest to the beginning of the unsorted subarray
             low = i
             for j in range(i+1,n):
+
+                # Find the lowest in the unsorted array
                 if nums[j] < nums[low]:
                     low = j
+            
+            # Swap the beginning of the unsorted subarray and the lowest.
+            # The beginning of the unsorted subarray now becomes the end of the sorted subarray
+            nums[i], nums[low] = nums[low], nums[i]
             nums[low], nums[i] = nums[i], nums[low]
             
 
@@ -63,20 +71,22 @@ class Insertion():
             nums (List[int]): The list to sort
         """
 
-        # Traverse through the list
+        # Start at the 2nd element in the array
         for i in range(1, len(nums)):
 
-            # Get the element at the 1st index
+            # Set the key to the beginning of the unsorted subarray
             key = nums[i]
 
-            # Move elements of arr[0..i-1], that are 
-            # greater than key, to one position ahead 
-            # of their current position 
+            # Set a pointer to the end of the sorted subarray
             j = i-1
+
+            # Shift elements in the sorted array to the right as needed
+            # until the correct position for the key is found
             while j >= 0 and key < nums[j]:
                 nums[j+1] = nums[j]
                 j -= 1
 
+            # Set the key to the found position
             nums[j+1] = key
 
 
@@ -93,42 +103,43 @@ class Merge():
         Args:
             nums (List[int]): [description]
         """
-        if len(nums) > 1:
+        if len(nums) <= 1: return
 
-            # Find the middle of the array
-            mid = len(nums) // 2
+        # Find the middle of the array
+        mid = len(nums) // 2
 
-            # Split the array elements into two halves
-            left = nums[:mid]
-            right = nums[mid:]
+        # Split the array elements into two halves
+        left = nums[:mid]
+        right = nums[mid:]
 
-            # Sort the left half
-            self.sort(left)
+        # Sort the left half
+        self.sort(left)
 
-            # Sort the right half
-            self.sort(right)
+        # Sort the right half
+        self.sort(right)
 
-            i = j = k = 0
-            while i < len(left) and j < len(right):
-                if left[i] < right[j]:
-                    nums[k] = left[i]
-                    i += 1
-                else:
-                    nums[k] = right[j]
-                    j += 1
-                k += 1
-
-            # Add the remaining elements of the left array if any
-            while i < len(left):
+        # Merge the left and right arrays into the original array
+        i = j = k = 0
+        while i < len(left) and j < len(right):
+            if left[i] < right[j]:
                 nums[k] = left[i]
                 i += 1
-                k += 1
-
-            # Add the remaining elements of the right array if any
-            while j < len(right):
+            else:
                 nums[k] = right[j]
                 j += 1
-                k += 1
+            k += 1
+
+        # Add the remaining elements of the left array if any
+        while i < len(left):
+            nums[k] = left[i]
+            i += 1
+            k += 1
+
+        # Add the remaining elements of the right array if any
+        while j < len(right):
+            nums[k] = right[j]
+            j += 1
+            k += 1
 
 
         
