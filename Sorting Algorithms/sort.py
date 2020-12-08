@@ -1,6 +1,9 @@
 from typing import List
 
-class BubbleSort():
+
+# Sorts a list by swapping adjacent elements if they are out of order. 
+# This is done in multiple iterations until all elements are in the correct order. 
+class Bubble():
 
     def sort(self, nums: List[int]) -> None:
         """Sorts a list by repeatedly steping through the list, 
@@ -21,7 +24,11 @@ class BubbleSort():
                 if nums[j] > nums[j+1]:
                     nums[j], nums[j+1] = nums[j+1], nums[j]
 
-class SelectionSort():
+
+# Sorts a list by maintaining two sublists; sorted and a non-sorted. 
+# Every iteration, the lowest element from the non-sorted sublist gets added 
+# to the end of the sorted sublist until there are no remaining elements in the non-sorted sublist.
+class Selection():
 
     def sort(self, nums: List[int]) -> None:
         """Sorts the list by maintaining two sublists - a sorted and non-sorted sublist. 
@@ -41,12 +48,16 @@ class SelectionSort():
             nums[low], nums[i] = nums[i], nums[low]
             
 
-class InsertionSort():
+# Sorts a list by maintaining two sublists; sorted and non-sorted. 
+# Every iteration, the lowest element in the non-sorted sublist gets inserted into the correct
+# position in the sorted sublist shifting elements to the right as needed.
+class Insertion():
 
     def sort(self, nums: List[int]) -> None:
-        """Sorts a list of numbers by inserting the lowest number into the front each iteration.
-            Time complexity: O(n2)
-            Space complexity: O(1)
+        """Sorts a list of numbers by inserting the lowest number into 
+        the correct position of the sorted sublist.
+        Time complexity: O(n2)
+        Space complexity: O(1)
 
         Args:
             nums (List[int]): The list to sort
@@ -69,9 +80,19 @@ class InsertionSort():
             nums[j+1] = key
 
 
-class MergeSort():
+# Sorts a list by dividing the list in half each iteration, 
+# sorting the halves, and combining the halves until the entire list is sorted.
+class Merge():
 
-    def sort_recursive(self, nums: List[int]) -> None:
+    def sort(self, nums: List[int]) -> None:
+        """Sorts a list by dividing the list in half each iteration, 
+        sorting the halves, and combining the halves until the entire list is sorted.
+        Time complexity: O(n(logn)).
+        Space complexity: O(n) -> due to the stack used during recursion.
+
+        Args:
+            nums (List[int]): [description]
+        """
         if len(nums) > 1:
 
             # Find the middle of the array
@@ -82,10 +103,10 @@ class MergeSort():
             right = nums[mid:]
 
             # Sort the left half
-            self.sort_recursive(left)
+            self.sort(left)
 
             # Sort the right half
-            self.sort_recursive(right)
+            self.sort(right)
 
             i = j = k = 0
             while i < len(left) and j < len(right):

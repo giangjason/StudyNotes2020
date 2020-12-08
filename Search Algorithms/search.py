@@ -1,7 +1,8 @@
 from typing import List
 
+
 # Searches a collection of items one by one, in a sequential fashion.
-class LinearSearch():
+class Linear():
 
     def search(self, nums: List[int], val: int) -> bool:
         """Searches a list one by one in order 
@@ -21,9 +22,10 @@ class LinearSearch():
                 return True
         return False
 
+
 # Searches a collection of items by halving the collection of items each iterations. 
 # Each iteration defines a sub-collection that is half the previous collection.  
-class BinarySearch():
+class Binary():
 
     def search(self, nums: List[int], val: int) -> bool:
         """Searches for a given value by halving the list each iteration until 
@@ -89,7 +91,7 @@ class BinarySearch():
 # A search that first finds a range of the collection to search in by doubling the range 
 # each iteration until the high bound of the iteration is either at or above search target.
 # The defined range then undergoes a binary search.
-class ExponentialSearch():
+class Exponential():
 
     def search(self, nums: List[int], val: int) -> bool:
         """Searches a collection by first defining a range by doubling an upperbound each iteration. 
@@ -114,10 +116,14 @@ class ExponentialSearch():
         lower = i//2
         upper = i if i < len(nums)-1 else len(nums)-1
 
-        return BinarySearch().search(nums[lower : upper+1], val)
+        return Binary().search(nums[lower : upper+1], val)
 
 
-class InterpolationSearch():
+# Searches a collection by first determining a lower and upper bound. 
+# The lower and upper bounds are used to determine position (pos). 
+# The lower bound, upper bound, and position are recalculated each iteration 
+# until the element is found or until the lower and upper bound cross.
+class Interpolation():
 
     def search(self, nums: List[int], val: int) -> bool:
         """Searches a collection by first determining the closest 

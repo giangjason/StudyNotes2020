@@ -1,69 +1,13 @@
 import time
-import data
 from helper import Helper
-from search import LinearSearch, BinarySearch, ExponentialSearch, InterpolationSearch
-from sort import BubbleSort, SelectionSort, InsertionSort, MergeSort
+from search import Linear, Binary, Exponential, Interpolation
 
-def run_sort():
-    helper = Helper()
-    low = 0
-    high = 200
-    length = 25
-
-    # BUBBLE SORT O(n2)
-    print("\n")
-    print("-----BUBBLE SORT------")
-    nums = helper.generate_random_list(low, high, length)
-    if length <= 25: print(nums)
-    start = time.time()
-    BubbleSort().sort(nums)
-    end = time.time()
-    if length <= 25: print("Sorted numbers:", nums)
-    print("Execution time: {0}ms".format((end-start)*1000))
-
-    # SELECTION SORT O(n2)
-    print("\n")
-    print("-----SELECTION SORT------")
-    nums = helper.generate_random_list(low, high, length)
-    if length <= 25: print(nums)
-    start = time.time()
-    SelectionSort().sort(nums)
-    end = time.time()
-    if length <= 25: print("Sorted numbers:", nums)
-    print("Execution time: {0}ms".format((end-start)*1000))
-
-    # INSERTION SORT O(n2)
-    print("\n")
-    print("-----INSERTION SORT------")
-    nums = helper.generate_random_list(low, high, length)
-    if length <= 25: print(nums)
-    start = time.time()
-    InsertionSort().sort(nums)
-    end = time.time()
-    if length <= 25: print("Sorted numbers:", nums)
-    print("Execution time: {0}ms".format((end-start)*1000))
-
-    # MERGE SORT O(n(logn))
-    print("\n")
-    print("-----MERGE SORT------")
-    nums = helper.generate_random_list(low, high, length)
-    if length <= 25: print(nums)
-    start = time.time()
-    MergeSort().sort_recursive(nums)
-    end = time.time()
-    if length <= 25: print("Sorted numbers:", nums)
-    print("Execution time: {0}ms".format((end-start)*1000))
-
-
-    print("\n")
-
-
-def run_search():
+def main():
     show_recursion = True
 
     start_num = 1
-    length = 100000000
-    search_value = 921200007687687
+    length = 100
+    search_value = 87
 
     helper = Helper()
     nums = helper.generate_ordered_list(start_num, length)
@@ -76,7 +20,7 @@ def run_search():
     print("\n")
     print("-----LINEAR SEARCH O(n)-----")
     start = time.time()
-    result = LinearSearch().search(nums, search_value)
+    result = Linear().search(nums, search_value)
     end = time.time()
     print("Contains value: ({0})? ({1})".format(search_value, result))
     print("Execution time: {0}ms".format((end-start)*1000))
@@ -85,7 +29,7 @@ def run_search():
     print("\n")
     print("-----BINARY SEARCH O(logn)-----")
     start = time.time()
-    result = BinarySearch().search(nums, search_value)
+    result = Binary().search(nums, search_value)
     end = time.time()
     print("Contains value: ({0})? ({1})".format(search_value, result))
     print("Execution time: {0}ms".format((end-start)*1000))
@@ -95,7 +39,7 @@ def run_search():
         print("\n")
         print("-----BINARY SEARCH RECURSIVE O(logn)-----")
         start = time.time()
-        result = BinarySearch().search_recursive(nums, search_value)
+        result = Binary().search_recursive(nums, search_value)
         end = time.time()
         print("Contains value: ({0})? ({1})".format(search_value, result))
         print("Execution time: {0}ms".format((end-start)*1000))
@@ -104,7 +48,7 @@ def run_search():
     print("\n")
     print("-----EXPONENTIAL SEARCH O(logn)-----")
     start = time.time()
-    result = ExponentialSearch().search(nums, search_value)
+    result = Exponential().search(nums, search_value)
     end = time.time()
     print("Contains value: ({0})? ({1})".format(search_value, result))
     print("Execution time: {0}ms".format((end-start)*1000))
@@ -113,21 +57,11 @@ def run_search():
     print("\n")
     print("-----INTERPOLATION SEARCH O(logn)-----")
     start = time.time()
-    result = InterpolationSearch().search(nums, search_value)
+    result = Interpolation().search(nums, search_value)
     end = time.time()
     print("Contains value: ({0})? ({1})".format(search_value, result))
     print("Execution time: {0}ms".format((end-start)*1000))
 
 
     print("\n")
-
-
-def main():
-
-    show_search = False
-    show_sort = True
-
-    if show_search: run_search()
-    if show_sort: run_sort()
-    
 main()
