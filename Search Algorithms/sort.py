@@ -69,5 +69,45 @@ class InsertionSort():
             nums[j+1] = key
 
 
+class MergeSort():
+
+    def sort_recursive(self, nums: List[int]) -> None:
+        if len(nums) > 1:
+
+            # Find the middle of the array
+            mid = len(nums) // 2
+
+            # Split the array elements into two halves
+            left = nums[:mid]
+            right = nums[mid:]
+
+            # Sort the left half
+            self.sort_recursive(left)
+
+            # Sort the right half
+            self.sort_recursive(right)
+
+            i = j = k = 0
+            while i < len(left) and j < len(right):
+                if left[i] < right[j]:
+                    nums[k] = left[i]
+                    i += 1
+                else:
+                    nums[k] = right[j]
+                    j += 1
+                k += 1
+
+            # Add the remaining elements of the left array if any
+            while i < len(left):
+                nums[k] = left[i]
+                i += 1
+                k += 1
+
+            # Add the remaining elements of the right array if any
+            while j < len(right):
+                nums[k] = right[j]
+                j += 1
+                k += 1
+
 
         
