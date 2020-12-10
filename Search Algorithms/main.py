@@ -1,20 +1,25 @@
+import sys
 import time
 from helper import Helper
 from search import Linear, Binary, Exponential, Interpolation
 
 def main():
-    show_recursion = True
-
-    start_num = 1
-    length = 100
-    search_value = 87
-
-    helper = Helper()
-    nums = helper.generate_ordered_list(start_num, length)
+    show_recursion = False
+    
+    if len(sys.argv) > 2:
+        search_value = int(sys.argv[1])
+        nums = []
+        for i in range(2, len(sys.argv)):
+            nums.append(int(sys.argv[i]))
+    else:
+        start_num = 1
+        length = 10
+        search_value = 87
+        nums = Helper().generate_ordered_list(start_num, length)
 
     if len(nums) < 15:
         print("\n")
-        print("Numbers generated:", nums)
+        print("-----Numbers generated------\n", nums)
 
     # LINEAR SEARCH O(n)
     print("\n")
@@ -64,4 +69,7 @@ def main():
 
 
     print("\n")
-main()
+
+
+if __name__ == "__main__":
+    main()
