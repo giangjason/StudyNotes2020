@@ -1,3 +1,4 @@
+import sys
 import time
 from helper import Helper
 from sort import Bubble, Selection, Insertion, Merge
@@ -5,15 +6,16 @@ from sort import Bubble, Selection, Insertion, Merge
 def main():
 
     helper = Helper()
-    low = -100
-    high = 100
-    length = 25
+
+    low = -20 if len(sys.argv) <= 1 else int(sys.argv[1])
+    high = 20 if len(sys.argv) <= 1 else int(sys.argv[2])
+    length = 10 if len(sys.argv) <= 1 else int(sys.argv[3])
 
     # BUBBLE SORT O(n2)
     print("\n")
     print("-----BUBBLE SORT------")
     nums = helper.generate_random_list(low, high, length)
-    if length <= 25: print(nums)
+    if length <= 25: print("Unsorted numbers:",nums)
     start = time.time()
     Bubble().sort(nums)
     end = time.time()
@@ -24,7 +26,7 @@ def main():
     print("\n")
     print("-----SELECTION SORT------")
     nums = helper.generate_random_list(low, high, length)
-    if length <= 25: print(nums)
+    if length <= 25: print("Unsorted numbers:",nums)
     start = time.time()
     Selection().sort(nums)
     end = time.time()
@@ -35,7 +37,7 @@ def main():
     print("\n")
     print("-----INSERTION SORT------")
     nums = helper.generate_random_list(low, high, length)
-    if length <= 25: print(nums)
+    if length <= 25: print("Unsorted numbers:",nums)
     start = time.time()
     Insertion().sort(nums)
     end = time.time()
@@ -46,7 +48,7 @@ def main():
     print("\n")
     print("-----MERGE SORT------")
     nums = helper.generate_random_list(low, high, length)
-    if length <= 25: print(nums)
+    if length <= 25: print("Unsorted numbers:",nums)
     start = time.time()
     Merge().sort(nums)
     end = time.time()
