@@ -1,18 +1,20 @@
 import sys
 import time
 from helper import Helper
-from sort import Bubble, Selection, Insertion, Merge, Quick
+from sort import Bubble, Selection, Insertion, Merge, Quick, Count
 
 def main():
 
     low = -100000
     high = 100000
-    length = 10000
+    length = 0
 
     args = sys.argv
 
-    nums = ([int(args[i]) for i in range(1, len(args))] if len(args) > 1 
-                else Helper().generate_random_list(low, high, length))
+    # nums = ([int(args[i]) for i in range(1, len(args))] if len(args) > 1 
+    #             else Helper().generate_random_list(low, high, length))
+
+    nums = []
     
     # BUBBLE SORT O(n2)
     print("\n")
@@ -69,9 +71,20 @@ def main():
     if length <= 25: print("Sorted numbers:", quick_nums)
     print("Execution time: {0}ms".format((end-start)*1000))
 
+    # COUNT SORT O(n+k)
+    print("\n")
+    print("-----COUNT SORT------")
+    count_nums = list(nums)
+    if length <= 25: print("Unsorted numbers:",nums)
+    start = time.time()
+    Count().sort(count_nums)
+    end = time.time()
+    if length <= 25: print("Sorted numbers:", count_nums)
+    print("Execution time: {0}ms".format((end-start)*1000))
 
     print("\n")
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
 
+main()

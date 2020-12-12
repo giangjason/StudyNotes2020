@@ -142,6 +142,9 @@ class Merge():
             k += 1
 
 
+# Sorts a list be defining a pivot and finding the position of the pivot in the list 
+# where all elements to the left of the pivot are less than the pivot 
+# and all elements to the right of the pivot are greater than the pivot.
 class Quick():
 
     def _partition(self, nums: List[int], low: int, high: int) -> int:
@@ -183,12 +186,57 @@ class Quick():
         # Sort the subarray left of the pivot (contains elements less than the pivot)
         self._sort(nums, low, p-1)
 
-        # Sort the subarray right of the pivot (contains elements greather than the pivot)
+        # Sort the subarray right of the pivot (contains elements greater than the pivot)
         self._sort(nums, p+1, high)
 
     def sort(self, nums: List[int]) -> None:
         self._sort(nums, 0, len(nums)-1)
 
             
-        
+# Sorts an array by calculating the number of occurances of an element in the array and setting 
+# the position of each element based on the position derived from the occurance count.
+# The array MUST be contain only positive integers. 
+# Time complexity: O(n+k) where n = the array and k = the maximum number in the array.
+class Count():
+
+    def sort(self, nums: List[int]) -> None:
+        """Sorts an array by the number of occurances of each element in the array.
+        Must contain only positive integers. 
+        Time complexity: O(n+k)
+        Space complexity: O(n+k)
+
+        Args:
+            nums (List[int]): [description]
+        """
+        size = len(nums)
+
+        # Determine the max number in the array
+        max_num = 0
+        for num in nums:
+            if num > max_num:
+                max_num = num
+
+        # Initialize the count array
+        count = [0] * (max_num+1)
+
+        # Store the number of occurances in the array into the count array (O(n))
+        for i in range(size):
+            count[nums[i]] += 1
+
+        # Calculate the accumulative sum in the count array (O(k))
+        for j in range(1, len(count)):
+            count[j] += count[j-1]
+
+        # Sort the numbers in the array based on the count position in the count array (O(n))
+        output = [0] * size
+        for k in range(size):
+            key = nums[k]
+            index = count[key]-1
+            output[index] = key
+            count[key] -= 1
+
+        # Copy the output into the array
+        for l in range(size):
+            nums[l] = output[l]
+
 
