@@ -1,61 +1,77 @@
 import sys
 import time
 from helper import Helper
-from sort import Bubble, Selection, Insertion, Merge
+from sort import Bubble, Selection, Insertion, Merge, Quick
 
 def main():
 
-    helper = Helper()
+    low = -100000
+    high = 100000
+    length = 10000
 
-    low = -20 if len(sys.argv) <= 1 else int(sys.argv[1])
-    high = 20 if len(sys.argv) <= 1 else int(sys.argv[2])
-    length = 10 if len(sys.argv) <= 1 else int(sys.argv[3])
+    args = sys.argv
 
+    nums = ([int(args[i]) for i in range(1, len(args))] if len(args) > 1 
+                else Helper().generate_random_list(low, high, length))
+    
     # BUBBLE SORT O(n2)
     print("\n")
     print("-----BUBBLE SORT------")
-    nums = helper.generate_random_list(low, high, length)
+    bubble_nums = list(nums)
     if length <= 25: print("Unsorted numbers:",nums)
     start = time.time()
-    Bubble().sort(nums)
+    Bubble().sort(bubble_nums)
     end = time.time()
-    if length <= 25: print("Sorted numbers:", nums)
+    if length <= 25: print("Sorted numbers:", bubble_nums)
     print("Execution time: {0}ms".format((end-start)*1000))
 
     # SELECTION SORT O(n2)
     print("\n")
     print("-----SELECTION SORT------")
-    nums = helper.generate_random_list(low, high, length)
+    selection_nums = list(nums)
     if length <= 25: print("Unsorted numbers:",nums)
     start = time.time()
-    Selection().sort(nums)
+    Selection().sort(selection_nums)
     end = time.time()
-    if length <= 25: print("Sorted numbers:", nums)
+    if length <= 25: print("Sorted numbers:", selection_nums)
     print("Execution time: {0}ms".format((end-start)*1000))
 
     # INSERTION SORT O(n2)
     print("\n")
     print("-----INSERTION SORT------")
-    nums = helper.generate_random_list(low, high, length)
+    insertion_nums = list(nums)
     if length <= 25: print("Unsorted numbers:",nums)
     start = time.time()
-    Insertion().sort(nums)
+    Insertion().sort(insertion_nums)
     end = time.time()
-    if length <= 25: print("Sorted numbers:", nums)
+    if length <= 25: print("Sorted numbers:", insertion_nums)
     print("Execution time: {0}ms".format((end-start)*1000))
 
     # MERGE SORT O(n(logn))
     print("\n")
     print("-----MERGE SORT------")
-    nums = helper.generate_random_list(low, high, length)
+    merge_nums = list(nums)
     if length <= 25: print("Unsorted numbers:",nums)
     start = time.time()
-    Merge().sort(nums)
+    Merge().sort(merge_nums)
     end = time.time()
-    if length <= 25: print("Sorted numbers:", nums)
+    if length <= 25: print("Sorted numbers:", merge_nums)
+    print("Execution time: {0}ms".format((end-start)*1000))
+
+    # QUICK SORT O(n(logn))
+    print("\n")
+    print("-----QUICK SORT------")
+    quick_nums = list(nums)
+    if length <= 25: print("Unsorted numbers:",nums)
+    start = time.time()
+    Quick().sort(quick_nums)
+    end = time.time()
+    if length <= 25: print("Sorted numbers:", quick_nums)
     print("Execution time: {0}ms".format((end-start)*1000))
 
 
     print("\n")
 
-main()
+if __name__ == "__main__":
+    main()
+

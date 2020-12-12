@@ -142,4 +142,53 @@ class Merge():
             k += 1
 
 
+class Quick():
+
+    def _partition(self, nums: List[int], low: int, high: int) -> int:
+        """Partitions an array so that elements less than the pivot are left of 
+        the pivot and elements greater than the pivot are right of the pivot.
+
+        Args:
+            low (int): The lower bound of the array to partition.
+            high (int): The upper bound of the array to partition.
+            nums (List[int]): The array to partition.
+
+        Returns:
+            int: The indexed position of the pivot.
+        """
+
+        # Set the pivot as the last element in the list
+        p = nums[high]
+
+        # Set the position for the pivot's final resting place 
+        # (the end of the subarray where elements are less than the pivot)
+        i = low-1
+
+        # Traverse the arraym swap i and j whenever encountering an element less than the pivot
+        for j in range(low, high):
+            if nums[j] <= p:
+                i += 1
+                nums[i], nums[j] = nums[j], nums[i]
+
+        # Set the pivot between the subarray that contains elements lower and the subarray that contains elements higher.
+        nums[i+1], nums[high] = nums[high], nums[i+1]
+        return i+1
+
+    def _sort(self, nums: List[int], low: int, high: int) -> None:
+        if low >= high: return
+
+        # Determine the position of the pivot
+        p = self._partition(nums, low, high)
+
+        # Sort the subarray left of the pivot (contains elements less than the pivot)
+        self._sort(nums, low, p-1)
+
+        # Sort the subarray right of the pivot (contains elements greather than the pivot)
+        self._sort(nums, p+1, high)
+
+    def sort(self, nums: List[int]) -> None:
+        self._sort(nums, 0, len(nums)-1)
+
+            
         
+
