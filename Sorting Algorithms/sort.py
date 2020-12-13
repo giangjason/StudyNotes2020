@@ -229,19 +229,36 @@ class Count():
 
         # Sort the numbers in the array based on the count position in the count array (O(n))
         output = [0] * size
-        i = size-1
-        while i >= 0:
-            key = nums[i]
+        h = size-1
+        while h >= 0:
+            key = nums[h]
             index = count[key]-1
             output[index] = key
             count[key] -= 1
-            i -= 1
+            h -= 1
 
         # Copy the output into the array
         for l in range(size):
             nums[l] = output[l]
 
-class Radix():
+# Sorts the elements in an array by first grouping the individual digits of the same place value. 
+# Then, sort the elements according to their increasing/decreasing order. 
+# Below is a representation of Radix sort using the least significant digit (LSD)
+class RadixLSD():
+
+    def sort(self, nums: List[int]) -> None:
+        
+        # Get the maximum element in the array
+        max_num = 0
+        for num in nums:
+            if num > max_num:
+                max_num = num
+
+        # Count sort the array based on the current place of the digit
+        place = 1
+        while max_num // place > 0:
+            self._count_sort(nums, place)
+            place *= 10
 
     def _count_sort(self, nums: List[int], place: int) -> None:
         
@@ -262,35 +279,21 @@ class Radix():
             count[index] += 1
 
         # Calculated the accumulative sum of the occurances
-        for j in range(1, size):
+        for j in range(1, len(count)):
             count[j] += count[j-1]
 
         # Sort the array into a new output array based on the positions determined in the count array
         output = [0] * size
-        for k in range(size):
-            num = nums[k]
-            digit = (num//place)%10
-            index = count[digit]-1
-            output[index] = num
-            count[digit] -= 1
+        h = size - 1
+        while h >= 0:
+            num = nums[h] // place
+            index = count[num % 10]-1
+            output[index] = nums[h]
+            count[num % 10] -= 1
+            h -= 1
 
         # Copy the output array into the original array
         for h in range(size):
             nums[h] = output[h]
-
-    def sort(self, nums: List[int]) -> None:
         
-        # Get the maximum element in the array
-        max_num = 0
-        for num in nums:
-            if num > max_num:
-                max_num = num
-
-        # Count sort the array based on the current place of the digit
-        place = 1
-        while max_num // place > 0:
-            self._count_sort(nums, place)
-            place *= 10
-
-        
-        
+# TODO: RadixSort (MSD) - most significant digit
