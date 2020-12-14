@@ -22,7 +22,7 @@ class Node():
         """Deletes the node associated with the given key.
 
         Time Complexity:
-            Best: O(1) - when the root is the key to delete.
+            Best: O(logn) 
             Average: O(logn)
             Worst: O(h) where h=height - when the key to delete for is the smallest or greatest.
 
@@ -100,7 +100,7 @@ class Node():
         """Creates a node and inserts into the binary search tree.
         
         Time Complexity:
-            Best: O(1) - when the tree contains only the root
+            Best: O(logn) - when the tree contains only the root
             Average: O(logn)
             Worst: O(h) where h=height - then the key entered is the smallest or greatest in the tree.
 
