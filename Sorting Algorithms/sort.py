@@ -1,5 +1,8 @@
 from typing import List
 
+# TODO: RadixSort (MSD) - most significant digit
+# TODO: CountSort with negative numbers
+# TODO: Sorting with characters/strings
 
 # Sorts a list by swapping adjacent elements if they are out of order. 
 # This is done in multiple iterations until all elements are in the correct order. 
@@ -296,4 +299,21 @@ class RadixLSD():
         for h in range(size):
             nums[h] = output[h]
         
-# TODO: RadixSort (MSD) - most significant digit
+
+
+class Shell():
+
+    def sort(self, nums: List[int]) -> None:
+        n = len(nums)
+        interval = n // 2
+        while interval > 0:
+            for i in range(interval, n):
+                num = nums[i]
+                j = i
+                while j >= interval and nums[j - interval] > num:
+                    nums[j] = nums[j - interval]
+                    j -= interval
+
+                nums[j] = num
+            interval //= 2
+
