@@ -1,5 +1,6 @@
 from __future__ import annotations
 from typing import Type
+import queue
 
 class Node():
 
@@ -159,6 +160,33 @@ class Node():
         if self.left: self.left.print_postorder()
         if self.right: self.right.print_postorder()
         print(self.key, end=" ")
+
+    def print_breadth_first(self) -> None:
+        """Prints out a tree by traversing in level order, left to right."""
+        que = queue.Queue()
+
+        curr = self
+        while curr:
+            # Print out the current node
+            print(curr.key, end=" ")
+
+            # Add the left child to the queue if exists
+            if curr.left: 
+                que.put(curr.left)
+            
+            # Add the right child to the queue if exists
+            if curr.right: 
+                que.put(curr.right)
+
+            # Set the current node to nothing if the queue is empty,
+            # otherwise remove the next item from the queue and set as the current node.
+            if que.empty(): 
+                curr = None
+            else: 
+                curr = que.get()
+
+
+
 
     def search(self, key: int) -> bool:
         """Searches a binary search tree for a given node.

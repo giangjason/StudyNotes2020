@@ -22,7 +22,7 @@ def main():
     
     low = -50
     high = 50
-    length = 20
+    length = 30
 
     args = sys.argv
     if len(args) > 1:
@@ -31,6 +31,7 @@ def main():
     else:
         nums = Helper().generate_random_list(low, high, length)
         r = nums[0]
+        nums = nums[1:]
 
     root = construct_binary_search_tree(r, nums)
 
@@ -38,7 +39,7 @@ def main():
     print("-----Binary Search Tree-----")
     root.display()
 
-    if length <= 25:
+    if length <= 30:
         print("\n")
         print("------Inorder Traversal------")
         root.print_inorder()
@@ -51,8 +52,12 @@ def main():
         print("------Postorder Traversal------")
         root.print_postorder()
 
+        print("\n")
+        print("------Breadth First Traversal-----")
+        root.print_breadth_first()
+
     print("\n")
-    pos_test = nums[length // 2]
+    pos_test = nums[length // 4]
     neg_test1 = (low * 2) - 1
     neg_test2 = (high * 2) + 1
     pos_test_result = root.search(pos_test)

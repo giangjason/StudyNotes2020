@@ -14,6 +14,13 @@ class Helper():
         Returns:
             List[int]: Returns a random list of numbers
         """
-        return [random.randint(low, high) for _ in range(length)]
+        check = {}
+        nums = []
+        while len(check) <= length:
+            rand_num = random.randint(low, high)
+            if rand_num not in check:
+                nums.append(rand_num)
+                check[rand_num] = None
+        return nums
 
     
