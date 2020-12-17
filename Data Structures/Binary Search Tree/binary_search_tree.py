@@ -5,6 +5,19 @@ from queue import Queue
 import sys
 
 def delete(root: Node, val: int) -> Node:
+    """Deletes a node from the tree.
+
+    Time complexity:
+        Average: O(logn)
+        Worst: O(n)
+
+    Args:
+        root (Node): The root to delete the node from.
+        val (int): The value of the node to delete.
+
+    Returns:
+        Node: The root of the tree.
+    """
     if root is None:
         return None
 
@@ -39,8 +52,6 @@ def delete(root: Node, val: int) -> Node:
         root.right = delete(root.right, right_min.val)
 
     return root
-
-
 
 def get_max(root: Node) -> Node:
     """Gets the node containing the maximum value in the tree.
@@ -120,7 +131,6 @@ def print_breadth_first(root: Node) -> None:
         if curr.right:
             # Add the right subchild to the stack if exists.
             que.put(curr.right)
-
 
 def print_inorder(root: Node) -> None:
     """Inorder traverses the tree and prints out the value of each node.
@@ -211,8 +221,10 @@ def main():
     low = 0
     high = 100
     length = 20
-
     nums = Helper().generate_random_list(low, high, length)
+
+    print("\n")
+    print("-----Numbers Generated-----")
     print(nums)
 
     root = construct_binary_search_tree(nums[0], nums[1:])
@@ -263,6 +275,11 @@ def main():
     print("\n")
     print("-----Deleting {0}-----".format(pos_test))
     delete(root, pos_test)
+    print(root)
+
+    print("\n")
+    print("-----Deleting the root-----")
+    delete(root, root.val)
     print(root)
 
     print("\n")
