@@ -1,5 +1,7 @@
+from binarytree import Node
 from typing import List
 import random
+
 
 class Helper():
 
@@ -16,11 +18,12 @@ class Helper():
         """
         check = {}
         nums = []
-        while len(check) <= length:
+        while len(nums) <= length:
             rand_num = random.randint(low, high)
             if rand_num not in check:
                 nums.append(rand_num)
                 check[rand_num] = None
         return nums
+
 
     
