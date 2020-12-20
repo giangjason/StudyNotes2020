@@ -19,12 +19,12 @@ class MinHeap():
         # Add to the end of the heap
         self.heap.append(val)
 
-        # Move the value up the heap until it is less than its parent.
+        # Determine the index positions of the current element and its parent
         curr_idx = len(self.heap) - 1
         parent_idx = (curr_idx - 1) // 2
-        while self.heap[parent_idx] > self.heap[curr_idx]:
-            if parent_idx < 0:
-                return
+
+        # Repeatedly swap the current element with its parent if the parent is greater.
+        while parent_idx >= 0 and self.heap[parent_idx] > self.heap[curr_idx]:
             self.heap[parent_idx], self.heap[curr_idx] = self.heap[curr_idx], self.heap[parent_idx]
             curr_idx = parent_idx
             parent_idx = (curr_idx - 1) // 2
@@ -57,11 +57,6 @@ class MinHeap():
         Args:
             val (int): The value to delete.
         """
-        # Deletes the top item in the heap
-        if val == self.heap[0]:
-            self.get_min()
-            return
-
         # Find the index of the item to delete
         try:
             curr_idx = self.heap.index(val)
