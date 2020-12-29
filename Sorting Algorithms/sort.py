@@ -244,7 +244,7 @@ class Count():
         for l in range(size):
             nums[l] = output[l]
 
-# Sorts the elements in an array by first grouping the individual digits of the same place value. 
+# Sorts elements in an array by first grouping the individual digits of the same place value. 
 # Then, sort the elements according to their increasing/decreasing order. 
 # Below is a representation of Radix sort using the least significant digit (LSD)
 class Radix():
@@ -315,21 +315,38 @@ class Shell():
                 nums[j] = num
             interval //= 2
 
+# Sorts elements in an array by first dividing the elements into individual buckets, 
+# sorts the buckets (via Insertion sort) and merges the sorted buckets back into the original array.
 class Bucket():
 
     def sort(self, nums: List[int]) -> None:
-        neg = []
-        pos = []
+        """Sorts an array by first seperating elements into buckets defined by a range, 
+        sorts the individual buckets, and merges the buckets back into the array.
+
+        Time complexity:
+            Average: O(n+k)
+            Worst: O(n2)
+
+        Args:
+            nums (List[int]): The array of intergers to sort.
+        """
+
+        # Seperates negative and positive integers
+        neg, pos = [], []
         for num in nums:
             if num < 0:
                 neg.append(-num)
             else:
                 pos.append(num)
 
+        # Sorts the negative numbers
         self._sort(neg)
-        self._sort(pos)
         neg.reverse()
 
+        # Sorts the positiv numbers
+        self._sort(pos)
+        
+        # Remerges the sorted subarrays back into the original array.
         i = j = k = 0
         while j < len(neg):
             nums[i] = -neg[j]
@@ -343,13 +360,17 @@ class Bucket():
 
     def _sort(self, nums: List[int]) -> None:
         n = len(nums)
-        buckets = [[] for _ in range(n)]
-        max_val = max(nums)
 
+        # Creates empty buckets the size of the array
+        buckets = [[] for _ in range(n)]
+
+        # Determines which bucket an element should fall into adds them to the bucket
+        max_val = max(nums)
         for num in nums:
             index = num * n // (max_val + 1)
             buckets[index].append(num)
 
+        # Sorts each bucket and adds the sorted elements back into the original array
         i = 0
         for bucket in buckets:
             Insertion().sort(bucket)
