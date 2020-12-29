@@ -1,13 +1,13 @@
 import sys
 import time
 from helper import Helper
-from sort import Bubble, Selection, Insertion, Shell, Merge, Quick, Count, Radix
+from sort import Bubble, Selection, Insertion, Shell, Merge, Quick, Count, Radix, Bucket
 
 def main():
 
-    low = 0
-    high = 10
-    length = 10000
+    low = -99
+    high = 99
+    length = 20
 
     args = sys.argv
 
@@ -80,26 +80,37 @@ def main():
     if len(nums) <= 25: print("Sorted numbers:", quick_nums)
     print("Execution time: {0}ms".format((end-start)*1000))
 
-    # COUNT SORT O(n+k)
-    print("\n")
-    print("-----COUNT SORT------")
-    count_nums = list(nums)
-    if len(nums) <= 25: print("Unsorted numbers:",nums)
-    start = time.time()
-    Count().sort(count_nums)
-    end = time.time()
-    if len(nums) <= 25: print("Sorted numbers:", count_nums)
-    print("Execution time: {0}ms".format((end-start)*1000))
+    # # COUNT SORT O(n+k)
+    # print("\n")
+    # print("-----COUNT SORT------")
+    # count_nums = list(nums)
+    # if len(nums) <= 25: print("Unsorted numbers:",nums)
+    # start = time.time()
+    # Count().sort(count_nums)
+    # end = time.time()
+    # if len(nums) <= 25: print("Sorted numbers:", count_nums)
+    # print("Execution time: {0}ms".format((end-start)*1000))
 
-    # RADIX SORT O(d(n+k))
+    # # RADIX SORT O(d(n+k))
+    # print("\n")
+    # print("-----RADIX SORT------")
+    # radix_nums = list(nums)
+    # if len(nums) <= 25: print("Unsorted numbers:",nums)
+    # start = time.time()
+    # Radix().sort(radix_nums)
+    # end = time.time()
+    # if len(nums) <= 25: print("Sorted numbers:", radix_nums)
+    # print("Execution time: {0}ms".format((end-start)*1000))
+
+    # BUCKET SORT O(n+k)
     print("\n")
-    print("-----RADIX SORT------")
-    radix_nums = list(nums)
+    print("-----BUCKET SORT------")
+    bucket_nums = list(nums)
     if len(nums) <= 25: print("Unsorted numbers:",nums)
     start = time.time()
-    Radix().sort(radix_nums)
+    Bucket().sort(bucket_nums)
     end = time.time()
-    if len(nums) <= 25: print("Sorted numbers:", radix_nums)
+    if len(nums) <= 25: print("Sorted numbers:", bucket_nums)
     print("Execution time: {0}ms".format((end-start)*1000))
 
     print("\n")

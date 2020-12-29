@@ -315,3 +315,48 @@ class Shell():
                 nums[j] = num
             interval //= 2
 
+class Bucket():
+
+    def sort(self, nums: List[int]) -> None:
+        neg = []
+        pos = []
+        for num in nums:
+            if num < 0:
+                neg.append(-num)
+            else:
+                pos.append(num)
+
+        self._sort(neg)
+        self._sort(pos)
+        neg.reverse()
+
+        i = j = k = 0
+        while j < len(neg):
+            nums[i] = -neg[j]
+            j += 1
+            i += 1
+
+        while k < len(pos):
+            nums[i] = pos[k]
+            k += 1
+            i += 1
+
+    def _sort(self, nums: List[int]) -> None:
+        n = len(nums)
+        buckets = [[] for _ in range(n)]
+        max_val = max(nums)
+
+        for num in nums:
+            index = num * n // (max_val + 1)
+            buckets[index].append(num)
+
+        i = 0
+        for bucket in buckets:
+            Insertion().sort(bucket)
+            for num in bucket:
+                nums[i] = num
+                i += 1
+
+        
+
+        
