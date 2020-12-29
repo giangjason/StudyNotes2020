@@ -1,8 +1,9 @@
 from typing import List
 
-# TODO: RadixSort (MSD) - most significant digit
+# TODO: BucketSort
 # TODO: CountSort with negative numbers
 # TODO: Sorting with characters/strings
+
 
 # Sorts a list by swapping adjacent elements if they are out of order. 
 # This is done in multiple iterations until all elements are in the correct order. 
@@ -56,7 +57,6 @@ class Selection():
             # Swap the beginning of the unsorted subarray and the lowest.
             # The beginning of the unsorted subarray now becomes the end of the sorted subarray
             nums[i], nums[low] = nums[low], nums[i]
-            nums[low], nums[i] = nums[i], nums[low]
             
 
 # Sorts a list by maintaining two sublists; sorted and non-sorted. 
@@ -247,7 +247,7 @@ class Count():
 # Sorts the elements in an array by first grouping the individual digits of the same place value. 
 # Then, sort the elements according to their increasing/decreasing order. 
 # Below is a representation of Radix sort using the least significant digit (LSD)
-class RadixLSD():
+class Radix():
 
     def sort(self, nums: List[int]) -> None:
         
@@ -268,7 +268,7 @@ class RadixLSD():
         # Get the size of the array
         size = len(nums)
         
-        # Initialize the count - (we are only initializing a 10sized array because we are working with singular digits)
+        # Initialize the count - (we are only initializing a 10sized array because we are working with singular digits (0-9))
         count = [0] * 10
 
         # Calculate the occurances of an element and store in the count array
@@ -298,8 +298,6 @@ class RadixLSD():
         # Copy the output array into the original array
         for h in range(size):
             nums[h] = output[h]
-        
-
 
 class Shell():
 
