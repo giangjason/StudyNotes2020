@@ -327,6 +327,9 @@ class Bucket():
             Average: O(n+k)
             Worst: O(n2)
 
+        Space complexity:
+            Consistent: O(n)
+
         Args:
             nums (List[int]): The array of intergers to sort.
         """
