@@ -1,9 +1,6 @@
 from typing import List
 
-# TODO: BucketSort
-# TODO: CountSort with negative numbers
-# TODO: Sorting with characters/strings
-
+# TODO: Add documentation for shell sort
 
 # Sorts a list by swapping adjacent elements if they are out of order. 
 # This is done in multiple iterations until all elements are in the correct order. 
@@ -27,7 +24,6 @@ class Bubble():
                 # Swap adjacent elements if they are out of order
                 if nums[j] > nums[j+1]:
                     nums[j], nums[j+1] = nums[j+1], nums[j]
-
 
 # Sorts a list by maintaining two sublists; sorted and a non-sorted. 
 # Every iteration, the lowest element from the non-sorted sublist gets added 
@@ -58,7 +54,6 @@ class Selection():
             # The beginning of the unsorted subarray now becomes the end of the sorted subarray
             nums[i], nums[low] = nums[low], nums[i]
             
-
 # Sorts a list by maintaining two sublists; sorted and non-sorted. 
 # Every iteration, the lowest element in the non-sorted sublist gets inserted into the correct
 # position in the sorted sublist shifting elements to the right as needed.
@@ -92,6 +87,21 @@ class Insertion():
             # Set the key to the found position
             nums[j+1] = key
 
+class Shell():
+
+    def sort(self, nums: List[int]) -> None:
+        n = len(nums)
+        interval = n // 2
+        while interval > 0:
+            for i in range(interval, n):
+                num = nums[i]
+                j = i
+                while j >= interval and nums[j - interval] > num:
+                    nums[j] = nums[j - interval]
+                    j -= interval
+
+                nums[j] = num
+            interval //= 2
 
 # Sorts a list by dividing the list in half each iteration, 
 # sorting the halves, and combining the halves until the entire list is sorted.
@@ -144,7 +154,6 @@ class Merge():
             j += 1
             k += 1
 
-
 # Sorts a list be defining a pivot and finding the position of the pivot in the list 
 # where all elements to the left of the pivot are less than the pivot 
 # and all elements to the right of the pivot are greater than the pivot.
@@ -194,8 +203,7 @@ class Quick():
 
     def sort(self, nums: List[int]) -> None:
         self._sort(nums, 0, len(nums)-1)
-
-            
+         
 # Sorts an array by calculating the number of occurances of an element in the array and setting 
 # the position of each element based on the position derived from the occurance count.
 # The array MUST be contain only positive integers. 
@@ -298,22 +306,6 @@ class Radix():
         # Copy the output array into the original array
         for h in range(size):
             nums[h] = output[h]
-
-class Shell():
-
-    def sort(self, nums: List[int]) -> None:
-        n = len(nums)
-        interval = n // 2
-        while interval > 0:
-            for i in range(interval, n):
-                num = nums[i]
-                j = i
-                while j >= interval and nums[j - interval] > num:
-                    nums[j] = nums[j - interval]
-                    j -= interval
-
-                nums[j] = num
-            interval //= 2
 
 # Sorts elements in an array by first dividing the elements into individual buckets, 
 # sorts the buckets (via Insertion sort) and merges the sorted buckets back into the original array.
