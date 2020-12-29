@@ -1,0 +1,6 @@
+# Ignores python cache files
+.pyc
+
+# Ignores OS generated files
+.DS_Store
+.DS_Store?
