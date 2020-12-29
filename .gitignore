@@ -1,5 +1,5 @@
 # Ignores python cache files
-.pyc
+*.pyc
 
 # Ignores OS generated files
 .DS_Store
